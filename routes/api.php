@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//list bags
+Route::get('bags', 'BagController@index');
+
+//list single bag
+Route::get('bag/{id}', 'BagController@show');
+
+//create new bag
+Route::post('bag', 'BagController@store');
+
+// update bag
+Route::put('bags', 'BagController@store');
+
+// Delete bag
+Route::delete('bag', 'BagController@destroy');
