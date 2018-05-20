@@ -27,7 +27,7 @@ Route::get('bag/{id}', 'BagController@show');
 Route::post('bag', 'BagController@store');
 
 // update bag
-Route::put('bags', 'BagController@store');
+Route::put('bag', 'BagController@store');
 
 // Delete bag
-Route::delete('bag', 'BagController@destroy');
+Route::delete('bag/{id}', 'BagController@destroy');

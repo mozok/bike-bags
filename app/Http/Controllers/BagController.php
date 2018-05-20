@@ -42,6 +42,16 @@ class BagController extends Controller
     public function store(Request $request)
     {
         //
+        $bag = $request -> isMethod('put') ? Bag::findOrFail($request->bag_id) : new Bag;
+
+        $bag->id = $request->input('bag_id');
+        $bag->title = $request->input('title');
+        $bag->body = $request->input('body');
+        $bag->images = $request->input('images');
+
+        if ($bag -> save()) {
+            return new BagResource($bag);
+        }
     }
 
     /**
@@ -52,7 +62,10 @@ class BagController extends Controller
      */
     public function show($id)
     {
-        //
+        // Get Single bag
+        $bag = Bag::findOrFail($id);
+
+        return new BagResource($bag);
     }
 
     /**
@@ -87,5 +100,11 @@ class BagController extends Controller
     public function destroy($id)
     {
         //
+        $bag = Bag::findOrFail($id);
+
+        if ($bag->delete()) {
+            return new BagResource($bag);
+        }
+        
     }
 }
